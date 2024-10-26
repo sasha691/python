@@ -1,9 +1,9 @@
 import random
 import re
-from lab_1 import Lab1, Triangle
-from utilit import TestLib
+from lab_1 import Lab1
+from utilit import TestLib, Triangle
 
-class TestLab1(TestLib.TestLib):
+class TestLab1(TestLib.Test):
 
     def __init__(self):
         super().__init__(Lab1.Lab1())
@@ -15,7 +15,7 @@ class TestLab1(TestLib.TestLib):
         return False if result == None else True
     
     def testTask2RealTriangle(self):
-        triangle = Triangle.Triangle().triangle
+        triangle = Triangle.Triangle().getTriangle()
         result = self.lab.task2(triangle)
         return False if result == None else True
     

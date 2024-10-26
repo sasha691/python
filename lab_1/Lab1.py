@@ -1,8 +1,7 @@
 import math
 import datetime
 import re
-from lab_1 import Triangle
-from utilit import LabLib
+from utilit import LabLib, Triangle
 
 class Lab1(LabLib.Lab):
     @staticmethod
@@ -24,10 +23,10 @@ class Lab1(LabLib.Lab):
             return
         
     def task2(self, triangle: list = None):
-        if triangle == None:
-            triangle = [int(input('Введіть сторону трикутника')) for _ in range(3)]
         try:
-            if not Triangle.Triangle._isRealTriangle(triangle):
+            if triangle == None:
+                triangle = [int(input('Введіть сторону трикутника')) for _ in range(3)]
+            if not Triangle.Triangle.isRealTriangle(triangle):
                 print("Трикутник неможливий")
                 return
             triangle = map(int, triangle)
@@ -36,8 +35,8 @@ class Lab1(LabLib.Lab):
             s = math.sqrt(p * (p - a) * (p - b) * (p - c))
             print(f"Площа трикутника дорівнює {s:.2f}")
             return s
-        except ValueError:
-            print("Невірно введене значення")
+        except ValueError as e:
+            print(f"Невірно введене значення: {e}")
             return
         
     def task3(self, tiket: str = None) -> int:
