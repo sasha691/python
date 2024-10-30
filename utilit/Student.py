@@ -1,8 +1,9 @@
 import random
-from Human import Human
+from utilit import Human
 
-class Student(Human):
+class Student(Human.Human):
     def __init__(self, numSubjects: int = 3) -> None:
+        super().__init__()
         self.course = random.randint(1, 5)
         self.group = self.fake.random_int(min=1, max=10)
         self.grades = [self.fake.random_int(min=1, max=5) for _ in range(numSubjects)] 

@@ -11,14 +11,17 @@ class Lab3(LabLib.Lab):
         try:
             if nums == None:
                 n = int(input("Введіть кількість "))
-                nums = [int(input("Введіть елемент ") for _ in range(n))]
+                nums = [int(input("Введіть елемент ")) for _ in range(n)]
         except ValueError as e:
             print(f"Невірно введене значення: {e}")
         for i in range(len(nums) - 1):
             if nums[i] < nums[i + 1]:
+                print(False)
                 return False
+        print(True)
         return True
     
+    @staticmethod
     def task2():
         nums = [random.randint(1, 9) for _ in range(100)]
         countStart = sum(1 for num in nums if 1 <= num <= 3)
@@ -48,7 +51,7 @@ class Lab3(LabLib.Lab):
             print("Найбільш поширене чоловіче ім'я: ", mostCommonMaleName[0][0] if mostCommonMaleName else "Немає")
             print("Найбільш поширене жіноче ім'я: ", mostCommonFemaleName[0][0] if mostCommonFemaleName else "Немає")
 
-            ages = [student.getAge() for student in students]
+            ages = [student.age for student in students]
             mostCommonAge = Counter(ages).most_common(1)[0][0]
             studentsWithCommonAge = [student.getFullName() for student in students if student.age == mostCommonAge]
             print(f"Студенти з найпоширенішим віком (прізвища та ініціали): {studentsWithCommonAge}")
@@ -59,7 +62,11 @@ class Lab3(LabLib.Lab):
         try:
             n = int(input("Ведіть кількість: "))
             lst = [random.randint(0, 1) for _ in range(n)]
-            maxLen, start, end, currentLen, currentStart = 0
+            maxLen = 0
+            start = 0 
+            end = 0 
+            currentLen = 0 
+            currentStart = 0
             for i, value in enumerate(lst):
                 if value == 1:
                     if currentLen == 0:
@@ -76,7 +83,7 @@ class Lab3(LabLib.Lab):
                 start = currentStart
                 end = len(lst) - 1
 
-            return maxLen, start, end
+            print(maxLen, start, end)
 
         except ValueError as e:
             print(f"Сталась помилка {e}")
@@ -183,15 +190,17 @@ class Lab3(LabLib.Lab):
         try:
             n = int(input("Ведіть кількість: "))
             students = [Student.Student() for _ in range(n)]
-            print(f"Студенти з заборгованостями: {[student for student in students if student.isHasFailures()]}")
-            best_subject_index, best_average = self.findBestSubject(students)
+            studentsWithFailures = [student for student in students if student.isHasFailures()]
+            for student in studentsWithFailures:
+                print(f"Студенти з заборгованостями: {student}")
+            best_subject_index, best_average = self._findBestSubject(students)
             print(f"Предмет, який було здано краще (предмет {best_subject_index}) має середню оцінку {best_average:.2f}")
             print(f"Студенти, що склали всі іспити на 4 і 5: {[student for student in students if student.isPassedAllExams()]}") 
         except ValueError as e:
             print(f"Сталась помилка {e}")
 
     @staticmethod
-    def findBestSubject(students):
+    def _findBestSubject(students):
         subject_scores = [0] * len(students[0].grades)
         subject_counts = [0] * len(students[0].grades)
 
@@ -215,6 +224,5 @@ class Lab3(LabLib.Lab):
         while b <= n:
             fibonacci_numbers.append(b)  
             a, b = b, a + b 
-
         print(f"Числа Фібоначчі до {n}:", fibonacci_numbers)
         print(f"Загальна кількість чисел Фібоначчі: {len(fibonacci_numbers)}")
