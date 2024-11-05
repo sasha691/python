@@ -1,4 +1,4 @@
-from utilit import LabLib, Triangle
+from utils import LabLib, Triangle
 import math
 import numpy as np
 

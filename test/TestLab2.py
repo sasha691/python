@@ -1,5 +1,5 @@
 from lab_2 import Lab2
-from utilit import TestLib, Triangle
+from utils import TestLib, Triangle
 
 class TestLab2(TestLib.Test):
     def __init__(self):

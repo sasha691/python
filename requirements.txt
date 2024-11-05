@@ -1,2 +1,8 @@
 Numpy
 Faker
+tensorflow
+keras
+pillow
+matplotlib
+opencv-python
+scipy

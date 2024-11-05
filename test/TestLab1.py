@@ -1,7 +1,7 @@
 import random
 import re
 from lab_1 import Lab1
-from utilit import TestLib, Triangle
+from utils import TestLib, Triangle
 
 class TestLab1(TestLib.Test):
 

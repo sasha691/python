@@ -1,5 +1,5 @@
 import random
-from utilit import Human
+from utils import Human
 
 class Student(Human.Human):
     def __init__(self, numSubjects: int = 3) -> None:

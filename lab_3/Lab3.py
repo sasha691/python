@@ -1,5 +1,5 @@
-from utilit import LabLib
-from utilit import Student, Human
+from utils import LabLib
+from utils import Student, Human
 from collections import Counter, defaultdict
 from itertools import combinations
 import random, math

@@ -29,3 +29,8 @@ class MorseCode:
             decoded_message.append(decoded_word)
 
         return ' '.join(decoded_message)
+    
+    @staticmethod
+    def is_morse(text: str):
+        valid_symbols = ['.', '-', ' ', '/']
+        return all(char in valid_symbols for char in text)

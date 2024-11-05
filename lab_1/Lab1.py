@@ -1,7 +1,7 @@
 import math
 import datetime
 import re
-from utilit import LabLib, Triangle
+from utils import LabLib, Triangle
 
 class Lab1(LabLib.Lab):
     @staticmethod

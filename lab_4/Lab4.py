@@ -1,5 +1,5 @@
-from utilit import LabLib
-from utilit.MorseCode import MorseCode
+from utils import LabLib
+from utils.MorseCode import MorseCode
 from functools import wraps
 from urllib.parse import urlparse, parse_qs
 import os
@@ -43,7 +43,10 @@ class Lab4(LabLib.Lab):
     @staticmethod
     def task3():
         message = input('Введіть текст: ')
-        print(MorseCode.decrypt(message))
+        if MorseCode.is_morse(message):
+            print(MorseCode.encrypt(message))
+        else:
+            print(MorseCode.decrypt(message))
 
     @staticmethod
     def task4(input_filename: str = 'README.md', output_filename: str = 'README.md', key: str = 'wwwwwww') -> None:
