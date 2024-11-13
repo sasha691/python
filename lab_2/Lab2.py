@@ -5,12 +5,12 @@ import numpy as np
 class Lab2(LabLib.Lab):
     
     @staticmethod
-    def task1(x: int = None, y: int = None) -> bool:
+    def task1(x: float = None, y: float = None) -> bool:
         try:
             if x == None or y == None:
-                x = int(input('x = '))
-                y = int(input('y = '))
-            if x**2 + y**2 <= 2 and x**2 + y**2 >= 1 and x >= 0 and y >= 0:
+                x = float(input('x = '))
+                y = float(input('y = '))
+            if x**2 + y**2 <= 2**2 and x**2 + y**2 >= 1 and y >= 0:
                 print("Точка входить в діапазон")
                 return True
             else:

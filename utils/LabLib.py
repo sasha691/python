@@ -55,16 +55,17 @@ class ModelLab5():
             return self.train_images
         img = mpimg.imread(path_to_image)
         gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        resized_img = cv2.resize(gray_img, (28, 28))
-        resized_img = resized_img.astype('uint8')
-        black_white_img = cv2.adaptiveThreshold(resized_img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-                                                cv2.THRESH_BINARY, 11, 2)
-        
-        # plt.imshow(gray_img, cmap=plt.cm.binary)
+        resized_img = cv2.resize(gray_img, (28, 28)).astype('uint8')
+        _, binary_img = cv2.threshold(resized_img, 128, 255, cv2.THRESH_BINARY)
+        # black_white_img = cv2.adaptiveThreshold(resized_img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+        #                                         cv2.THRESH_BINARY, 11, 2)
+        inverted_img = cv2.bitwise_not(binary_img)
 
-        images = black_white_img.reshape((1, 28 * 28))
-        images = images.astype('float64')/255
-        # images.shape
+        plt.imshow(inverted_img, cmap='gray')
+        plt.show()
+        
+        images = inverted_img.reshape((1, 28 * 28)).astype('float64') / 255
+        
         return images
 
     def show_info(self):

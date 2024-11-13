@@ -6,5 +6,5 @@ from lab_5.Lab5Part1 import Model1, Model2
 from test import TestLab1, TestLab2
 
 if __name__ == "__main__":
-    Model2().forecast('./image/1.jpg')
+    Model2(epochs=10).forecast('./image/2.png')
     

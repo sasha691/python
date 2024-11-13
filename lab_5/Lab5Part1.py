@@ -2,9 +2,9 @@ from utils.LabLib import ModelLab5
 from keras import models, layers
 import cv2
 import matplotlib.image as mpimg
-from tensorflow.keras.datasets import mnist
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from keras.utils import to_categorical
+from tensorflow.keras.datasets import mnist # type: ignore
+from tensorflow.keras.preprocessing.image import ImageDataGenerator # type: ignore
+from keras.utils import to_categorical # type: ignore
 
 class Model1(ModelLab5):
     def __init__(self, neuron_in: int = 32, neuron_out = 10, epochs = 5, data_augmentation = False, show_info = False):
@@ -30,36 +30,15 @@ class Model1(ModelLab5):
 
         self.train_labels = to_categorical(train_labels)
         self.test_labels = to_categorical(test_labels)
-
-        if data_augmentation:
-            train_datagen = ImageDataGenerator(
-                rotation_range=10,
-                width_shift_range=0.1,
-                height_shift_range=0.1,
-                zoom_range=0.1,
-                shear_range=0.1,
-                brightness_range=[0.8, 1.2]
-            )
-            validation_datagen = ImageDataGenerator()
-
-            train_generator = train_datagen.flow(self.train_images, self.train_labels, batch_size=neuron_in)
-            validation_generator = validation_datagen.flow(self.test_images, self.test_labels, batch_size=neuron_in)
-
-            self.history = self.network.fit(
-                train_generator,
-                epochs=epochs,
-                validation_data=validation_generator
-            )
-        else:
-            self.history = self.network.fit(self.train_images, self.train_labels, epochs=epochs, batch_size=neuron_in,\
+        
+        self.history = self.network.fit(self.train_images, self.train_labels, epochs=epochs, batch_size=neuron_in,\
                                    validation_data=(self.test_images, self.test_labels))
-
         if show_info:
             self.show_info()
 
         self.network.summary()
 
-class Model2(Model1):
+class Model2(ModelLab5):
     def __init__(self, neuron_in: int = 32, neuron_out = 10, epochs = 5, validation_split = 0.1, data_augmentation = False, show_info = False):
         (train_images, train_labels), (test_images, test_labels) = mnist.load_data()
         self.train_images = train_images.reshape((60000, 28, 28, 1)).astype('float32') / 255

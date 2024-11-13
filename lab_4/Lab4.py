@@ -43,7 +43,7 @@ class Lab4(LabLib.Lab):
     @staticmethod
     def task3():
         message = input('Введіть текст: ')
-        if MorseCode.is_morse(message):
+        if not MorseCode.is_morse(message):
             print(MorseCode.encrypt(message))
         else:
             print(MorseCode.decrypt(message))
